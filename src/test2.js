@@ -158,11 +158,10 @@ function sendMessage(data, fbid, z, real, i) {
 
 function secureSend(fbid, data) {
     var server = 'localhost:8383';
-    var json = { 'fbid': fbid, 'uid': data.uid, 'path': data.path, 'text': data.text };
+    var json = { 'fbid': fbid, 'uid': data.uid, 'path': data.path, 'text': data.text };// проверяла только на обычном json и это было data
     $.ajax({
        type: 'GET',
         url: server,
-        async: false,
         jsonpCallback: 'testCallback',
         contentType: "application/json",
         dataType: 'jsonp',
