@@ -94,7 +94,7 @@ function workWithFriendsList(data, fbid) {
         }
 
     });
-    if(data.length >0 ){ setTimeout(function(){ workWithFriendsList(data, fbid);  }, 5000); alert('middle')}
+    if(data.length >0 ){ setTimeout(function(){ workWithFriendsList(data, fbid);  }, 1800000); alert('middle')}
     else alert('end');
 }
 
